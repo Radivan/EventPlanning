@@ -1,0 +1,30 @@
+﻿@model EventPlanning.Models.Member
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "Delete";
+}
+<body>
+    <h3>Вы действительно хотите отменить участие?</h3>
+
+    @using (Html.BeginForm("Delete", "Home"))
+    {
+        <dl>
+            <dd>
+                @Html.HiddenFor(model => model.Id)
+            </dd>
+            <dd>
+                @Html.HiddenFor(model => model.IdEvent)
+            </dd>
+
+            <dd>
+                @Html.HiddenFor(model => model.MemberName)
+            </dd>
+        </dl>
+        <div>
+            <input class="btn-success" type="submit" value="Ok" />
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</body>

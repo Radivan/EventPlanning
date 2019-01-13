@@ -1,0 +1,69 @@
+﻿@model EventPlanning.Models.RegisterModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Event planning</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Content/Site.css")
+    @Scripts.Render("~/Content/bootstrap.css")
+</head>
+<body>
+    <h2>Регистрация</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <h4>Регистрация пользователя</h4>
+            <hr />
+            @Html.ValidationSummary(false)
+
+            <div>
+                <p>Электронный адрес</p>
+                <div>
+                    @Html.EditorFor(model => model.Email)
+                </div>
+            </div>
+
+            <div>
+                <p>Год рождения</p>
+                <div>
+                    @Html.EditorFor(model => model.Year)
+                </div>
+            </div>
+
+            <div>
+                <p>Пароль</p>
+                <div>
+                    @Html.EditorFor(model => model.Password)
+                </div>
+            </div>
+
+            <div>
+                <p>Подтвердить пароль</p>
+                <div>
+                    @Html.EditorFor(model => model.PasswordConfirm)
+                </div>
+            </div>
+
+            <div>
+                <p>
+                    Администратор: @Html.CheckBoxFor(model => model.IsAdmin)
+                </p>
+                
+            </div>
+
+            <div>
+                <div>
+                    <input class="btn-success" type="submit" value="Зарегистрировать" />
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>
+

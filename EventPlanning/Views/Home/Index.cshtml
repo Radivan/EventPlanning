@@ -1,0 +1,49 @@
+﻿@model EventPlanning.Models.Event
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html>
+<head>
+    <title>List of events</title>
+</head>
+<body>
+    <p></p>
+    <div>
+        @using (Ajax.BeginForm("EventSearch", new AjaxOptions { UpdateTargetId = "results" }))
+        {
+            <input type="text" name="title" />
+            <input class="btn-success" type="submit" value="Поиск" />
+        }
+            <div id="results">
+                <h3>Events:</h3>
+                <table class="table table-hover">
+                    <tr>
+                        <td><p>Title</p></td>
+                        <td><p>Place</p></td>
+                        <td><p>Organizer</p></td>
+                        <td><p>DateTime</p></td>
+                        <td><p>Status</p></td>
+                    </tr>
+
+                    @foreach (var e in ViewBag.Events)
+                    {
+                        <tr>
+                            <td><p>@e.Title</p></td>
+                            <td><p>@e.Place</p></td>
+                            <td><p>@e.Organizer</p></td>
+                            <td><p>@e.Date</p></td>
+                            @if (ViewBag.Actives.Contains(e.Id))
+                            {
+                                <td><p><a href="/Home/Join/@e.Id">Отменить участие</a></p></td>
+                            }
+                            else
+                            {
+                                <td><p><a href="/Home/Join/@e.Id">Участвовать</a></p></td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+    </div>
+</body>
+</html>

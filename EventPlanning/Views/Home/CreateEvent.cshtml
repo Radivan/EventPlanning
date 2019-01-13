@@ -1,0 +1,50 @@
+﻿@model EventPlanning.Models.Event
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "CreateEvent";
+}
+
+<html>
+<head>
+    <title>Add</title>
+</head>
+<body>
+    <div>
+        <h3>Форма оформления события</h3>
+        <form method="post" action="">
+            <table class="table table-hover">
+                <tr>
+                    <td><p>Введите название </p></td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Title)
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Введите место проведения:</p></td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Place, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.Place)
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Укажите дату:</p></td>
+                    <td>
+                        <input name="Date" class="form-control" type="datetime-local">
+                        @Html.ValidationMessageFor(model => model.Date)
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

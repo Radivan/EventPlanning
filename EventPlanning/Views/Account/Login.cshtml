@@ -1,0 +1,40 @@
+﻿@model EventPlanning.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Event planning</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Content/Site.css")
+    @Scripts.Render("~/Content/bootstrap.css")
+</head>
+<body>
+    <h2>Login</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            @Html.ValidationSummary()
+            <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+            <p>
+                <label>Email</label><br />
+                @Html.EditorFor(x => x.Email)
+            </p>
+            <p>
+                <label>Пароль</label><br />
+                @Html.EditorFor(x => x.Password)
+            </p>
+            <p><button type="submit">Войти</button></p>
+            @Html.ActionLink("Register", "Register", "Account")
+        </div>
+    }
+</body>
+</html>
